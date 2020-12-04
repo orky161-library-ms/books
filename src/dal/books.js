@@ -1,33 +1,30 @@
-const pool = require('../db')
-
+const {pool} = require('../config/index')
+const {addBookQuery, deleteBookByIdQuery, getBookByIdQuery, updateBookQuery, getBooksQuery} = require("../query_builder/queries")
 class BooksDal {
 
     async addBook({name, image, authorId}) {
-        const book = await pool.query('INSERT INTO books (name, image, authorId) VALUES (?,?,?)',
+        const book = await pool.query(addBookQuery,
             [name, image, authorId])
         return book[0].insertId
     }
 
-    async deleteBook(id) {
-        return pool.query('DELETE FROM authors WHERE id = (?)',
+    async deleteBookById(id) {
+        return pool.query(deleteBookByIdQuery,
             [id])
     }
 
-    async getBook(id) {
-        const book = await pool.query('SELECT * FROM books WHERE id = (?)',
+    async getBookById(id) {
+        const book = await pool.query(getBookByIdQuery,
             [id])
         return book[0][0]
     }
 
     async updateBook(id, {name}) {
-        await pool.query('UPDATE books SET ' +
-            'name = (?), image = (?), authorId = (?)' +
-            'WHERE id = (?)',
-            [name, id])
+        await pool.query(updateBookQuery [name, id])
     }
 
     async getBooks() {
-        const books = await pool.query('SELECT * FROM books')
+        const books = await pool.query(getBooksQuery)
         return books[0]
     }
 

@@ -1,8 +1,11 @@
 require('dotenv').config("./env");
 const express = require('express')
 const cors = require('cors')
+const {pool} = require("./config/index")
+const {checkConnectionQuery} = require("./query_builder/queries")
+
 const bodyParser = require('body-parser')
-const bookRoutes = require("./src/routes/books")
+const bookRoutes = require("./routes/books")
 
 const app = express()
 const port = 30001
@@ -14,6 +17,12 @@ app.use("/api/book", bookRoutes)
 app.get('/ping', function (req, res) {
     res.status(200).json({msg: "ping"})
 })
+
+app.get('/health', async function (req, res) {
+    await pool.query(checkConnectionQuery)
+    res.status(200).json({msg: "health"})
+})
+
 
 app.listen(port, () => {
         console.log(`app listening at http://localhost:${port}`);
