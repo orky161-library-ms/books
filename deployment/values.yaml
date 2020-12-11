@@ -1,0 +1,4 @@
+name: books
+port: 30001
+deployment:
+  replicas: 3
