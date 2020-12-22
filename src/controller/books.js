@@ -1,28 +1,32 @@
-const bookDal = new (require('../dal/books'))()
+const BookDal = require('../dal/books')
 const {upload} = require("../s3/upload")
 
-class BooksLogic {
-    async addBook({name, authorId}, image) {
-        const imageUrl = await upload(image, name)
-        return bookDal.addBook({name, image: imageUrl, authorId})
-    }
-
-    deleteBook(id) {
-        return bookDal.deleteBookById(id)
-    }
-
-    getBook(id) {
-        return bookDal.getBookById(id)
-    }
-
-    updateBook(id, book) {
-        return bookDal.updateBook(id, book)
-    }
-
-    getBooks() {
-        return bookDal.getBooks()
-    }
-
+async function addBook({name, authorId}, image) {
+    const imageUrl = await upload(image, name)
+    return BookDal.addBook({name, image: imageUrl, authorId})
 }
 
-module.exports = BooksLogic
+function deleteBook(id) {
+    return BookDal.deleteBookById(id)
+}
+
+function getBook(id) {
+    return BookDal.getBookById(id)
+}
+
+function updateBook(id, book) {
+    return BookDal.updateBook(id, book)
+}
+
+function getBooks() {
+    return BookDal.getBooks()
+}
+
+
+module.exports = {
+    addBook,
+    deleteBook,
+    getBook,
+    updateBook,
+    getBooks,
+}
