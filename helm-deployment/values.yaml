@@ -2,3 +2,11 @@ name: books
 port: 30001
 deployment:
   replicas: 3
+
+public:
+  - path: "/ping"
+    method: "GET"
+  - path: "/health"
+    method: "GET"
+  - path: "/api/book"
+    method: "GET"
