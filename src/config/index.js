@@ -1,5 +1,6 @@
 const mysql = require('mysql2');
 const AWS = require('aws-sdk');
+const LibraryAuth = require("library.io-libs/dist/authorization")
 
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
@@ -15,8 +16,11 @@ const s3 = new AWS.S3({
     secretAccessKey: process.env.SECRET_ACCESS_KEY
 });
 
+const libraryAuth = new LibraryAuth(process.env.TOKEN_PRIVATE_KEY)
+
 module.exports = {
     pool: promisePool,
     s3,
+    libraryAuth
 }
 
