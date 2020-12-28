@@ -6,7 +6,17 @@ deployment:
 public:
   - path: "/ping"
     method: "GET"
+    id: "GET_PING"
+
   - path: "/health"
     method: "GET"
+    id: "GET_HEALTH"
+
+  - path: "/api/book/[a-z]*[^/]+$"
+    method: "POST"
+    id: "GET_BOOK"
+    prefix: "~ ^"
+
   - path: "/api/book"
-    method: "GET"
+    method: "POST"
+    id: "GET_BOOKS"
