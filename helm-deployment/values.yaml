@@ -13,10 +13,10 @@ public:
     id: "GET_HEALTH"
 
   - path: "/api/book/[a-z]*[^/]+$"
-    method: "POST"
+    method: "GET"
     id: "GET_BOOK"
     prefix: "~ ^"
 
   - path: "/api/book"
-    method: "POST"
+    method: "GET"
     id: "GET_BOOKS"

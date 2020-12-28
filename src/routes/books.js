@@ -3,7 +3,7 @@ const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 const express = require('express')
-const booksLogic = new (require("../controller/books"))()
+const booksLogic = require("../controller/books")
 const {permission_mw, auth_mw, equalId_mw} = require("../auth")
 
 const router = express.Router()

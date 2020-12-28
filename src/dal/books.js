@@ -1,5 +1,5 @@
 const {pool} = require('../config/index')
-const {addBookQuery, deleteBookByIdQuery, getBookByIdQuery, updateBookQuery, getBooksQuery, checkConnectionQuery} = require("../query_builder/queries")
+const {addBookQuery, deleteBookByIdQuery, getBookByIdQuery, updateBookQuery, getBooksQuery, checkConnectionQuery} = require("./query_builder/queries")
 
 async function addBook({name, image, authorId}) {
     const book = await pool.query(addBookQuery,
