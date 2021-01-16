@@ -18,7 +18,10 @@ function updateBook(id, book) {
     return BookDal.updateBook(id, book)
 }
 
-function getBooks() {
+function getBooks(ids) {
+    if (ids) {
+        return Promise.all(ids.split(",").map(id => getBook(id)))
+    }
     return BookDal.getBooks()
 }
 

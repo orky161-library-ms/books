@@ -11,7 +11,7 @@ const {LibraryRoles} = require("../../../library.io-libs/dist/roles");
 const router = express.Router()
 
 router.get("/",(async (req, res) => {
-    const books = await booksLogic.getBooks()
+    const books = await booksLogic.getBooks(req.query.ids)
     res.status(200).json({books})
 }))
 router.post("/", [decodeToken, verifyPermission(LibraryRoles.ADMIN)], upload.single("image"), (async (req, res) => {
